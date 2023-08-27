@@ -68,11 +68,11 @@ def process_rows(input_file_name, output_file_name):
             # For each data row in the reader
             for row in reader:
                 # Extract the values from the input row into named variables
-                Year, Month, Day, Time, TempC = row
+                Year, Month, Day, Time, TempF = row
 
                 # Call the conversion function, passing in the TempC argument
                 # Assign the return value to a new variable named TempK
-                TempF = convert_k_to_f(TempC)
+                TempF = convert_k_to_f(TempK)
 
                 # Write the transformed data to the output file
                 writer.writerow([Year, Month, Day, Time, TempF])
