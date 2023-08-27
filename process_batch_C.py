@@ -34,7 +34,7 @@ OUTPUT_FILE_NAME = "batchfile_3_farenheit.csv"
 
 
 def convert_k_to_f(temp_k):
-    logging.debug(f"Calling convert_k_to_f() with {temp_c}.")
+    logging.debug(f"Calling convert_k_to_f() with {temp_k}.")
     fahrenheit = round(float(temp_k) - 457.87, 2)
     logging.debug(f"Converted {temp_k}K to {fahrenheit}F.")
     return fahrenheit
