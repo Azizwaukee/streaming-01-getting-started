@@ -34,14 +34,19 @@ OUTPUT_FILE_NAME = "batchfile_3_farenheit.csv"
 
 
 def convert_k_to_f(temp_k):
+    """Convert to Kelvin to Farenheit.
+    Use the built-in round() function to round tgito 2 decimal places
+    Use the built-in float() function to convert the string to a float (a floating point number)
+    All CSV values are read as strings.
+    """
     logging.debug(f"Calling convert_k_to_f() with {temp_k}.")
-    fahrenheit = round(float(temp_k) - 457.87, 2)
-    logging.debug(f"Converted {temp_k}K to {fahrenheit}F.")
-    return fahrenheit
+    farenheit = round((float(temp_k) - 273.15) * 1.8 + 32, 2)
+    logging.debug(f"Converted {temp_k}K to {farenheit}F.") 
+    return farenheit
 
 
 def process_rows(input_file_name, output_file_name):
-    return
+    """Read from input file, convert temperature, and write to output file."""
     logging.info(f"Calling process_rows(): {input_file_name} to {output_file_name}.")
 
     # Create a file object for input (r = read access)
@@ -63,20 +68,19 @@ def process_rows(input_file_name, output_file_name):
             writer = csv.writer(output_file, delimiter=",")
 
             # Write the header row to the output file
-            writer.writerow(["Year", "Month", "Day", "Time", "TempF"])
+            writer.writerow(["Year", "Month", "Day", "Time", "TempK"])
 
             # For each data row in the reader
             for row in reader:
                 # Extract the values from the input row into named variables
-                Year, Month, Day, Time, TempF = row
+                Year, Month, Day, Time, TempK = row
 
-                # Call the conversion function, passing in the TempC argument
-                # Assign the return value to a new variable named TempK
+                # Call the conversion function, passing in the TempK argument
+                # Assign the return value to a new variable named TempF
                 TempF = convert_k_to_f(TempK)
 
                 # Write the transformed data to the output file
                 writer.writerow([Year, Month, Day, Time, TempF])
-
 
 
 # ---------------------------------------------------------------------------
